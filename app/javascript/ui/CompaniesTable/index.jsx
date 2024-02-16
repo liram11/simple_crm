@@ -52,4 +52,4 @@ function CompaniesTable({ companies, page, totalPages, onPageChange }) {
   );
 }
 
-export { CompaniesTable };
+export default CompaniesTable;

@@ -1,7 +1,6 @@
-import React from "react";
+import React, { memo } from "react";
 
 function Input({ id, label, value, onChange, type = "text" }) {
-
   const handleChange = e => onChange(e.target.value);
 
   return (
@@ -14,4 +13,4 @@ function Input({ id, label, value, onChange, type = "text" }) {
   );
 }
 
-export { Input };
+export default memo(Input);

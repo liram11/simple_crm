@@ -14,4 +14,4 @@ function Error({ message }) {
   );
 }
 
-export { Error };
+export default Error;

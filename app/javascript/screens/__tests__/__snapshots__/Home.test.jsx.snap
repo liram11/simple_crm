@@ -62,7 +62,7 @@ exports[`renders correctly 1`] = `
             className="form-control"
             id="min-employee"
             onChange={[Function]}
-            type="text"
+            type="number"
             value=""
           />
         </div>
@@ -78,7 +78,7 @@ exports[`renders correctly 1`] = `
             className="form-control"
             id="min-amount"
             onChange={[Function]}
-            type="text"
+            type="number"
             value=""
           />
         </div>

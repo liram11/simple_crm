@@ -4,7 +4,7 @@
 
 import React from "react";
 import renderer from "react-test-renderer";
-import { Error } from "..";
+import Error from "..";
 
 // eslint-disable-next-line no-undef
 it("renders correctly", () => {

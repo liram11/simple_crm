@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import lodash from "lodash";
 
-import { Input } from "../ui/Input";
-import { Error } from "../ui/Error";
-import { CompaniesTable } from "../ui/CompaniesTable";
+import Input from "../ui/Input";
+import Error from "../ui/Error";
+import CompaniesTable from "../ui/CompaniesTable";
 
 import { fetchCompanies } from "../utils/api";
 

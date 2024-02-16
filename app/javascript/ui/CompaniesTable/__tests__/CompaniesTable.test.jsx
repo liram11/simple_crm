@@ -4,7 +4,7 @@
 
 import React from "react";
 import renderer from "react-test-renderer";
-import { CompaniesTable } from "..";
+import CompaniesTable from "..";
 
 const companies = [
   {
