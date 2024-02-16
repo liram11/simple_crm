@@ -66,8 +66,8 @@ export default function Home() {
           <div className="filters">
             <Input id="company-name" label="Company Name" value={companyName} onChange={setCompanyName} />
             <Input id="industry" label="Industry" value={industry} onChange={setIndustry} />
-            <Input id="min-employee" label="Minimum Employee Count" value={minEmployee} onChange={setMinEmployee} />
-            <Input id="min-amount" label="Minimum Deal Amount" value={minDealAmount} onChange={setMinDealAmount} />
+            <Input id="min-employee" type="number" label="Minimum Employee Count" value={minEmployee} onChange={setMinEmployee} />
+            <Input id="min-amount" type="number" label="Minimum Deal Amount" value={minDealAmount} onChange={setMinDealAmount} />
           </div>
 
           <Error message={error} />
