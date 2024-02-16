@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Input } from "../ui/Input";
+import { fetchCompanies } from "../utils/api";
 
 export default function Home() {
   // List of fetched companies
@@ -11,15 +12,33 @@ export default function Home() {
   const [minEmployee, setMinEmployee] = useState("");
   const [minimumDealAmount, setMinimumDealAmount] = useState("");
 
+  // Last error
+  const [error, setError] = useState("");
+
   // Fetch companies from API
   useEffect(() => {
-    const url = "/api/v1/companies";
-    fetch(url)
-      .then((res) => {
-        return res.json();
+    const controller = new AbortController();
+    const { signal } = controller;
+    setError('')
+
+    fetchCompanies({
+      companyName,
+      industry,
+      minEmployee,
+      minimumDealAmount,
+    }, { signal })
+      .then((companies) => {
+        setCompanies(companies)
       })
-      .then((res) => setCompanies(res));
-  }, []);
+      .catch((e) => {
+        if (e.name === 'AbortError') { return ;}
+        setError(e.message)
+      })
+
+    return () => {
+      controller.abort();
+    };
+  }, [companyName, industry, minEmployee, minimumDealAmount]);
 
   return (
     <div className="vw-100 primary-color d-flex align-items-center justify-content-center">
@@ -33,6 +52,15 @@ export default function Home() {
             <Input id="min-employee" label="Minimum Employee Count" value={minEmployee} onChange={setMinEmployee} />
             <Input id="min-amount" label="Minimum Deal Amount" value={minimumDealAmount} onChange={setMinimumDealAmount} />
           </div>
+
+          {
+            error &&
+              <div>
+                <div className="alert alert-danger" role="alert">
+                  {error}
+                </div>
+              </div>
+          }
 
           <table className="table">
             <thead>
