@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export default () => {
+export default function Home() {
   // List of fetched companies
   const [companies, setCompanies] = useState([]);
 
