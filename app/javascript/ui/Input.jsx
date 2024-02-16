@@ -12,6 +12,6 @@ function Input({ id, label, value, onChange }) {
       </div>
     </>
   );
-};
+}
 
 export { Input };

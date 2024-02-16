@@ -22,7 +22,7 @@ export default function Home() {
     const { signal } = controller;
 
     const debouncedFetchCompanies = lodash.debounce( () => {
-      setError('')
+      setError("");
 
       fetchCompanies({
         companyName,
@@ -31,15 +31,15 @@ export default function Home() {
         minDealAmount,
       }, { signal })
         .then((companies) => {
-          setCompanies(companies)
+          setCompanies(companies);
         })
         .catch((e) => {
-          if (e.name === 'AbortError') { return ;}
-          setError(e.message)
-        })
-    }, 400)
+          if (e.name === "AbortError") { return ;}
+          setError(e.message);
+        });
+    }, 400);
 
-    debouncedFetchCompanies()
+    debouncedFetchCompanies();
 
     return () => {
       controller.abort();
@@ -92,4 +92,4 @@ export default function Home() {
       </div>
     </div>
   );
-};
+}
