@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Input } from "../ui/Input";
 
 export default function Home() {
   // List of fetched companies
@@ -26,24 +27,11 @@ export default function Home() {
         <div className="container secondary-color">
           <h1 className="display-4">Companies</h1>
 
-          <label htmlFor="company-name">Company Name</label>
-          <div className="input-group mb-3">
-            <input type="text" className="form-control" id="company-name" value={companyName} onChange={e => setCompanyName(e.target.value)} />
-          </div>
-
-          <label htmlFor="industry">Industry</label>
-          <div className="input-group mb-3">
-            <input type="text" className="form-control" id="industry" value={industry} onChange={e => setIndustry(e.target.value)} />
-          </div>
-
-          <label htmlFor="min-employee">Minimum Employee Count</label>
-          <div className="input-group mb-3">
-            <input type="text" className="form-control" id="min-employee" value={minEmployee} onChange={e => setMinEmployee(e.target.value)} />
-          </div>
-
-          <label htmlFor="min-amount">Minimum Deal Amount</label>
-          <div className="input-group mb-3">
-            <input type="text" className="form-control" id="min-amount" value={minimumDealAmount} onChange={e => setMinimumDealAmount(e.target.value)} />
+          <div className="filters">
+            <Input id="company-name" label="Company Name" value={companyName} onChange={setCompanyName} />
+            <Input id="industry" label="Industry" value={industry} onChange={setIndustry} />
+            <Input id="min-employee" label="Minimum Employee Count" value={minEmployee} onChange={setMinEmployee} />
+            <Input id="min-amount" label="Minimum Deal Amount" value={minimumDealAmount} onChange={setMinimumDealAmount} />
           </div>
 
           <table className="table">
@@ -61,7 +49,7 @@ export default function Home() {
                   <td>{company.name}</td>
                   <td>{company.industry}</td>
                   <td>{company.employee_count}</td>
-                  <td>{company.deals.reduce((sum, deal) => sum + deal.amount, 0)}</td>
+                  <td>{company.deals_sum}</td>
                 </tr>
               ))}
             </tbody>
