@@ -16,6 +16,14 @@ describe Api::V1::CompaniesController do
         let!(:deal) { create(:deal, company:, amount: 200_000) }
         let!(:company2) { create(:company, name: 'Super Company 2') }
         let!(:deal2) { create(:deal, company: company2) }
+        let(:company_filters) do
+          {
+            company_name: company.name,
+            industry: company.industry[0...7],
+            min_employee: 1200,
+            min_deal_amount: 190_000
+          }
+        end
 
         it 'should filter by company name' do
           get :index, params: { format: :json, filters: { company_name: company.name } }
@@ -54,14 +62,33 @@ describe Api::V1::CompaniesController do
         end
 
         it 'should filter by name, indusry, min_employee and min_deal_amount simultaneously' do
-          get :index, params: { format: :json, filters: {
-            company_name: company.name,
-            industry: company.industry[0...7],
-            min_employee: 1200,
-            min_deal_amount: 190_000
-          } }
+          get :index, params: { format: :json, filters: company_filters }
 
           expect(response.parsed_body.size).to eq(1)
+        end
+
+        it 'should not return anything if name does not exist' do
+          get :index, params: { format: :json, filters: company_filters.merge({ company_name: '000000000000' }) }
+
+          expect(response.parsed_body.size).to eq(0)
+        end
+
+        it 'should not return anything if name does not exist' do
+          get :index, params: { format: :json, filters: company_filters.merge({ industry: '000000000000000' }) }
+
+          expect(response.parsed_body.size).to eq(0)
+        end
+
+        it 'should not return anything if min_deal_amount exceeds the maximum' do
+          get :index, params: { format: :json, filters: company_filters.merge({ min_employee: 2000 }) }
+
+          expect(response.parsed_body.size).to eq(0)
+        end
+
+        it 'should not return anything if min_deal_amount exceeds the maximum' do
+          get :index, params: { format: :json, filters: company_filters.merge({ min_deal_amount: 210_000 }) }
+
+          expect(response.parsed_body.size).to eq(0)
         end
       end
     end
