@@ -7,7 +7,8 @@ module Api
         companies = Company.with_deals_sums.order(created_at: :desc)
         companies = filter_companies(companies)
 
-        render json: companies
+        render json: companies,
+               each_serializer: Api::V1::CompanySerializer
       end
 
       private
