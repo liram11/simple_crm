@@ -6,16 +6,10 @@ module Api
       def index
         companies = Company.includes(:deals).order(created_at: :desc)
 
-        if filter_params[:company_name]
-          companies = companies.where('companies.name LIKE LOWER(?)', "#{filter_params[:company_name]}%")
-        end
-
-        if filter_params[:industry]
-          companies = companies.where('companies.industry LIKE LOWER(?)', "#{filter_params[:industry]}%")
-        end
-
-        if filter_params[:min_employee]
-          companies = companies.where('companies.employee_count >= ?', filter_params[:min_employee])
+        companies = companies.filter_by_name(filter_params[:company_name]) if filter_params[:company_name].present?
+        companies = companies.filter_by_industry(filter_params[:industry]) if filter_params[:industry].present?
+        if filter_params[:min_employee].present?
+          companies = companies.filter_by_min_employee(filter_params[:min_employee])
         end
 
         # if filter_params[:min_deal_amount]
