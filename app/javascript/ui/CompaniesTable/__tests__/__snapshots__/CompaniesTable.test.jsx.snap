@@ -1,0 +1,214 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <table
+    className="table"
+  >
+    <thead>
+      <tr>
+        <th
+          scope="col"
+        >
+          Name
+        </th>
+        <th
+          scope="col"
+        >
+          Industry
+        </th>
+        <th
+          scope="col"
+        >
+          Employee Count
+        </th>
+        <th
+          scope="col"
+        >
+          Total Deal Amount
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          Wisozk, Kshlerin and McCullough
+        </td>
+        <td>
+          Philanthropy
+        </td>
+        <td>
+          698
+        </td>
+        <td>
+          776
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Cronin, Wilkinson and Brown
+        </td>
+        <td>
+          Museums and Institutions
+        </td>
+        <td>
+          698
+        </td>
+        <td>
+          1161
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Fay and Sons
+        </td>
+        <td>
+          Think Tanks
+        </td>
+        <td>
+          89
+        </td>
+        <td>
+          2819
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Wunsch LLC
+        </td>
+        <td>
+          Public Policy
+        </td>
+        <td>
+          238
+        </td>
+        <td>
+          1243
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Gutmann and Sons
+        </td>
+        <td>
+          Glass, Ceramics & Concrete
+        </td>
+        <td>
+          48
+        </td>
+        <td>
+          1205
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Hammes, Moen and Purdy
+        </td>
+        <td>
+          Research
+        </td>
+        <td>
+          398
+        </td>
+        <td>
+          2298
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Hintz LLC
+        </td>
+        <td>
+          Public Safety
+        </td>
+        <td>
+          245
+        </td>
+        <td>
+          730
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Greenholt Group
+        </td>
+        <td>
+          International Affairs
+        </td>
+        <td>
+          27
+        </td>
+        <td>
+          2048
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Mohr and Sons
+        </td>
+        <td>
+          Consumer Services
+        </td>
+        <td>
+          594
+        </td>
+        <td>
+          1004
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Jacobson-Hamill
+        </td>
+        <td>
+          Venture Capital & Private Equity
+        </td>
+        <td>
+          881
+        </td>
+        <td>
+          2246
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <ul
+      className="pagination"
+    >
+      <li
+        className="page-item"
+      >
+        <span
+          className="page-link disabled"
+        >
+          Page: 
+          1
+        </span>
+      </li>
+      <li
+        className="page-item"
+      >
+        <a
+          className="page-link"
+          href="#"
+          onClick={[Function]}
+        >
+          Previous Page
+        </a>
+      </li>
+      <li
+        className="page-item"
+      >
+        <a
+          className="page-link"
+          href="#"
+          onClick={[Function]}
+        >
+          Next Page
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+`;

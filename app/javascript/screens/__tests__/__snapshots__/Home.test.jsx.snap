@@ -5,7 +5,7 @@ exports[`renders correctly 1`] = `
   className="vw-100 primary-color d-flex align-items-center justify-content-center"
 >
   <div
-    className="jumbotron jumbotron-fluid bg-transparent"
+    className="jumbotron vw-100 jumbotron-fluid bg-transparent"
   >
     <div
       className="container secondary-color"
@@ -83,35 +83,6 @@ exports[`renders correctly 1`] = `
           />
         </div>
       </div>
-      <table
-        className="table"
-      >
-        <thead>
-          <tr>
-            <th
-              scope="col"
-            >
-              Name
-            </th>
-            <th
-              scope="col"
-            >
-              Industry
-            </th>
-            <th
-              scope="col"
-            >
-              Employee Count
-            </th>
-            <th
-              scope="col"
-            >
-              Total Deal Amount
-            </th>
-          </tr>
-        </thead>
-        <tbody />
-      </table>
     </div>
   </div>
 </div>

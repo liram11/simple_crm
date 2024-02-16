@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Input } from "../ui/Input";
-import { fetchCompanies } from "../utils/api";
 import lodash from "lodash";
+
+import { Input } from "../ui/Input";
+import { Error } from "../ui/Error";
+import { CompaniesTable } from "../ui/CompaniesTable";
+
+import { fetchCompanies } from "../utils/api";
+
 
 export default function Home() {
   // List of fetched companies
@@ -52,19 +57,9 @@ export default function Home() {
     };
   }, [companyName, industry, minEmployee, minDealAmount, page]);
 
-  const handleNextPageClick = () => {
-    if (page === totalPages) { return; }
-    setPage(prev => prev + 1);
-  };
-
-  const handlePrevPageClick = () => {
-    if (page === 1) { return; }
-    setPage(prev => prev - 1);
-  };
-
   return (
     <div className="vw-100 primary-color d-flex align-items-center justify-content-center">
-      <div className="jumbotron jumbotron-fluid bg-transparent">
+      <div className="jumbotron vw-100 jumbotron-fluid bg-transparent">
         <div className="container secondary-color">
           <h1 className="display-4">Companies</h1>
 
@@ -75,45 +70,14 @@ export default function Home() {
             <Input id="min-amount" label="Minimum Deal Amount" value={minDealAmount} onChange={setMinDealAmount} />
           </div>
 
-          {
-            error &&
-            <div>
-              <div className="alert alert-danger" role="alert">
-                {error}
-              </div>
-            </div>
-          }
+          <Error message={error} />
 
-          <table className="table">
-            <thead>
-              <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Industry</th>
-                <th scope="col">Employee Count</th>
-                <th scope="col">Total Deal Amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              {companies.map((company) => (
-                <tr key={company.id}>
-                  <td>{company.name}</td>
-                  <td>{company.industry}</td>
-                  <td>{company.employee_count}</td>
-                  <td>{company.deals_sum}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-
-          {totalPages > 1 &&
-            <div>
-              <ul className="pagination">
-                <li className="page-item"><span className="page-link disabled">Page: {page}</span></li>
-                <li className="page-item"><a className="page-link" href="#" onClick={handlePrevPageClick}>Previous Page</a></li>
-                <li className="page-item"><a className="page-link" href="#" onClick={handleNextPageClick}>Next Page</a></li>
-              </ul>
-            </div>
-          }
+          <CompaniesTable
+            companies={companies}
+            page={page}
+            onPageChange={setPage}
+            totalPages={totalPages}
+          />
         </div>
       </div>
     </div>
