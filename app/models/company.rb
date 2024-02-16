@@ -3,6 +3,8 @@
 class Company < ApplicationRecord
   has_many :deals, dependent: :destroy
 
+  self.per_page = 25
+
   scope :with_deals_sums, lambda {
     joins(:deals).group('companies.id').select('companies.*, SUM(deals.amount) as deals_sum')
   }

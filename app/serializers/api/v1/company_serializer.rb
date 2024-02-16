@@ -7,8 +7,8 @@ class Api::V1::CompanySerializer < ActiveModel::Serializer
              :updated_at,
              :deals_sum
 
-  has_many :deals,
-           serializer: Api::V1::DealSerializer
+  # has_many :deals,
+  #          serializer: Api::V1::DealSerializer
 
   def deals_sum
     object&.deals_sum

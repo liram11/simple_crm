@@ -4,11 +4,13 @@ module Api
   module V1
     class CompaniesController < ApplicationController
       def index
-        companies = Company.with_deals_sums.order(created_at: :desc)
+        companies = Company.with_deals_sums.page(params[:page]).order(created_at: :desc)
         companies = filter_companies(companies)
 
         render json: companies,
-               each_serializer: Api::V1::CompanySerializer
+               each_serializer: Api::V1::CompanySerializer,
+               meta: pagination_dict(companies),
+               adapter: :json
       end
 
       private

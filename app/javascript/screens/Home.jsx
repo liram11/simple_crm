@@ -16,12 +16,16 @@ export default function Home() {
   // Last error
   const [error, setError] = useState("");
 
+  // Pagination
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+
   // Fetch companies from API
   useEffect(() => {
     const controller = new AbortController();
     const { signal } = controller;
 
-    const debouncedFetchCompanies = lodash.debounce( () => {
+    const debouncedFetchCompanies = lodash.debounce(() => {
       setError("");
 
       fetchCompanies({
@@ -29,12 +33,14 @@ export default function Home() {
         industry,
         minEmployee,
         minDealAmount,
+        page
       }, { signal })
-        .then((companies) => {
-          setCompanies(companies);
+        .then((res) => {
+          setCompanies(res.companies);
+          setTotalPages(res.meta.total_pages);
         })
         .catch((e) => {
-          if (e.name === "AbortError") { return ;}
+          if (e.name === "AbortError") { return; }
           setError(e.message);
         });
     }, 400);
@@ -44,7 +50,17 @@ export default function Home() {
     return () => {
       controller.abort();
     };
-  }, [companyName, industry, minEmployee, minDealAmount]);
+  }, [companyName, industry, minEmployee, minDealAmount, page]);
+
+  const handleNextPageClick = () => {
+    if (page === totalPages) { return; }
+    setPage(prev => prev + 1);
+  };
+
+  const handlePrevPageClick = () => {
+    if (page === 1) { return; }
+    setPage(prev => prev - 1);
+  };
 
   return (
     <div className="vw-100 primary-color d-flex align-items-center justify-content-center">
@@ -61,11 +77,11 @@ export default function Home() {
 
           {
             error &&
-              <div>
-                <div className="alert alert-danger" role="alert">
-                  {error}
-                </div>
+            <div>
+              <div className="alert alert-danger" role="alert">
+                {error}
               </div>
+            </div>
           }
 
           <table className="table">
@@ -88,6 +104,16 @@ export default function Home() {
               ))}
             </tbody>
           </table>
+
+          {totalPages > 1 &&
+            <div>
+              <ul className="pagination">
+                <li className="page-item"><span className="page-link disabled">Page: {page}</span></li>
+                <li className="page-item"><a className="page-link" href="#" onClick={handlePrevPageClick}>Previous Page</a></li>
+                <li className="page-item"><a className="page-link" href="#" onClick={handleNextPageClick}>Next Page</a></li>
+              </ul>
+            </div>
+          }
         </div>
       </div>
     </div>

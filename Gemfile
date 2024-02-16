@@ -50,6 +50,8 @@ gem 'bootsnap', require: false
 # Serializers for ActiveModel. See https://github.com/rails-api/active_model_serializers
 gem 'active_model_serializers'
 
+gem 'will_paginate'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
