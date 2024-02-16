@@ -61,6 +61,9 @@ group :development, :test do
   # Linter for Ruby. See https://github.com/rubocop/rubocop
   gem 'rubocop', '~> 1.60', require: false
   gem 'rubocop-rails', '~> 2.23.1', require: false
+
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 6.1.1'
 end
 
 group :development do
