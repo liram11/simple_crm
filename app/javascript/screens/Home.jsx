@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Input } from "../ui/Input";
 import { fetchCompanies } from "../utils/api";
+import lodash from "lodash";
 
 export default function Home() {
   // List of fetched companies
@@ -10,7 +11,7 @@ export default function Home() {
   const [companyName, setCompanyName] = useState("");
   const [industry, setIndustry] = useState("");
   const [minEmployee, setMinEmployee] = useState("");
-  const [minimumDealAmount, setMinimumDealAmount] = useState("");
+  const [minDealAmount, setMinDealAmount] = useState("");
 
   // Last error
   const [error, setError] = useState("");
@@ -19,26 +20,31 @@ export default function Home() {
   useEffect(() => {
     const controller = new AbortController();
     const { signal } = controller;
-    setError('')
 
-    fetchCompanies({
-      companyName,
-      industry,
-      minEmployee,
-      minimumDealAmount,
-    }, { signal })
-      .then((companies) => {
-        setCompanies(companies)
-      })
-      .catch((e) => {
-        if (e.name === 'AbortError') { return ;}
-        setError(e.message)
-      })
+    const debouncedFetchCompanies = lodash.debounce( () => {
+      setError('')
+
+      fetchCompanies({
+        companyName,
+        industry,
+        minEmployee,
+        minDealAmount,
+      }, { signal })
+        .then((companies) => {
+          setCompanies(companies)
+        })
+        .catch((e) => {
+          if (e.name === 'AbortError') { return ;}
+          setError(e.message)
+        })
+    }, 400)
+
+    debouncedFetchCompanies()
 
     return () => {
       controller.abort();
     };
-  }, [companyName, industry, minEmployee, minimumDealAmount]);
+  }, [companyName, industry, minEmployee, minDealAmount]);
 
   return (
     <div className="vw-100 primary-color d-flex align-items-center justify-content-center">
@@ -50,7 +56,7 @@ export default function Home() {
             <Input id="company-name" label="Company Name" value={companyName} onChange={setCompanyName} />
             <Input id="industry" label="Industry" value={industry} onChange={setIndustry} />
             <Input id="min-employee" label="Minimum Employee Count" value={minEmployee} onChange={setMinEmployee} />
-            <Input id="min-amount" label="Minimum Deal Amount" value={minimumDealAmount} onChange={setMinimumDealAmount} />
+            <Input id="min-amount" label="Minimum Deal Amount" value={minDealAmount} onChange={setMinDealAmount} />
           </div>
 
           {
