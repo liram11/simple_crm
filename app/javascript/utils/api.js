@@ -3,6 +3,15 @@ import qs from 'qs'
 export const COMPANIES_URL = "/api/v1/companies";
 
 export const fetchCompanies = async ({ companyName, industry, minEmployee, minDealAmount }, { signal }) => {
+  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
   try {
     const params = qs.stringify({
       filters: {
