@@ -1,4 +1,6 @@
-statuses = ["pending", "won", "lost"]
+# frozen_string_literal: true
+
+statuses = %w[pending won lost]
 
 FactoryBot.define do
   factory :deal do
