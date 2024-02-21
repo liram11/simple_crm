@@ -17,8 +17,8 @@ export default () => {
       .then((res) => {
         return res.json();
       })
-      .then((res) => setCompanies(res))
-  }, [])
+      .then((res) => setCompanies(res));
+  }, []);
 
   return (
     <div className="vw-100 primary-color d-flex align-items-center justify-content-center">
@@ -69,5 +69,5 @@ export default () => {
         </div>
       </div>
     </div>
-  )
+  );
 };
