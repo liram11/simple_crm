@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+[
+  <label
+    htmlFor="some_id"
+  >
+    Some Label
+  </label>,
+  <div
+    className="input-group mb-3"
+  >
+    <input
+      className="form-control"
+      id="some_id"
+      onChange={[Function]}
+      type="text"
+      value="some value"
+    />
+  </div>,
+]
+`;

@@ -47,6 +47,11 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
+# Serializers for ActiveModel. See https://github.com/rails-api/active_model_serializers
+gem 'active_model_serializers'
+
+gem 'will_paginate'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
@@ -61,6 +66,9 @@ group :development, :test do
   # Linter for Ruby. See https://github.com/rubocop/rubocop
   gem 'rubocop', '~> 1.60', require: false
   gem 'rubocop-rails', '~> 2.23.1', require: false
+
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 6.1.1'
 end
 
 group :development do
